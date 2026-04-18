@@ -13,7 +13,7 @@ bot.on('message', (msg) => {
     const user = msg.from.username || msg.from.first_name || "desconocido";
     try {
         if (!USERS_PERMITIDOS.includes(msg.from.id)) {
-            bot.sendMessage(msg.chat.id, "❌ No autorizado. Paga Judio");
+            bot.sendMessage(msg.chat.id, `❌ No autorizado. Paga Judio. Facilitale tu id ${msg.from.id} al administradorsh`);
             return;
         }
 
