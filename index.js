@@ -40,10 +40,10 @@ bot.on('message', (msg) => {
         }
 
         const dia = partes.pop().toLowerCase(); // última palabra
-        const playa = partes.join(" ");         // resto
+        const playa = partes.join(" ").toLowerCase();;         // resto
 
         if (!PLAYAS_VALIDAS.includes(playa)) {
-            bot.sendMessage(msg.chat.id, `La primera palabra debe ser la playa deseada:\n \tpeñiscola\n\tcastellon\n\tburriana\n\tcanet\n\tportsa\n\tsaler\n\tmareny\n\toliva\n\tmolins\n\taltea\n\tvilajoyosa\n\tsantapola\n\tnarejos`);
+            bot.sendMessage(msg.chat.id, `La primera palabra debe ser la playa deseada:\n \tPeñiscola\n\tCastellon\n\tBurriana\n\tCanet\n\tPortsa\n\tSaler\n\tMareny\n\tOliva\n\tMolins\n\tAltea\n\tVilajoyosa\n\tSantapola\n\tNarejos`);
             return;
         }
 
