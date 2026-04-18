@@ -20,8 +20,8 @@ bot.on('message', (msg) => {
     try {
         if (!USERS_PERMITIDOS.includes(msg.from.id)) {
             bot.sendMessage(msg.chat.id, `
-                ❌ ${user} no estás autorizado. 
-                Paga Judio.
+                ❌ ${user} no estás autorizado. \n
+                Paga Judio.\n
                 Facilitale tu id ${msg.from.id} al administradorsh
                 `);
             return;
@@ -29,13 +29,13 @@ bot.on('message', (msg) => {
 
         let texto = msg.text.trim();
         if (!msg.text) {
-            bot.sendMessage(msg.chat.id, "Formato incorrecto ❌ . Usa: Playa Día (ej: Mareny hoy)");
+            bot.sendMessage(msg.chat.id, "Formato incorrecto ❌ \n Usa: Playa Día (ej: Mareny hoy)");
             return;
         }
 
         const partes = texto.split(" ");
         if (partes.length < 2) {
-            bot.sendMessage(msg.chat.id, "Formato incorrecto ❌ . Usa: Playa Día (ej: Mareny hoy)");
+            bot.sendMessage(msg.chat.id, "Formato incorrecto ❌ \n Usa: Playa Día (ej: Mareny hoy)");
             return;
         }
 
@@ -49,7 +49,7 @@ bot.on('message', (msg) => {
 
         
         if (!DIAS_VALIDOS.includes(dia)) {
-            bot.sendMessage(msg.chat.id, "La segunda palabra debe ser el día deseado: ayer, hoy o mañana");
+            bot.sendMessage(msg.chat.id, "La segunda palabra debe ser el día deseado:\n\tayer\n\thoy\n\tmañana");
             return;
         }
 
