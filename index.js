@@ -1,6 +1,9 @@
 import 'dotenv/config';
 import moment from 'moment';
 import { initTelegram } from './services/telegram.js';
+import fs from 'fs';
+
+const ruta = `${process.env.HOME}/.pm2/logs/telegramBOT-out.log`;
 
 moment.locale("es");
 
@@ -10,7 +13,7 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 const MY_CHAT_ID = process.env.MY_CHAT_ID;
 const bot = initTelegram(BOT_TOKEN);
 const DIAS_VALIDOS = ["ayer", "hoy", "mañana"];
-const PLAYAS_VALIDAS = ["peñiscola","castellon","burriana","canet","portsa","saler","mareny","oliva","molins","altea","villajoyosa","santa pola","los narejos"];
+const PLAYAS_VALIDAS = ["peñiscola", "castellon", "burriana", "canet", "portsa", "saler", "mareny", "oliva", "molins", "altea", "villajoyosa", "santa pola", "los narejos"];
 
 
 // Evento principal: cuando alguien escribe al bot
@@ -33,8 +36,21 @@ bot.on('message', (msg) => {
             return;
         }
 
-        if(texto.toLowerCase()=="log"){
-            bot.sendMessage(8406513586, "🤖 Logs:");
+        if (texto.toLowerCase() == "log") {
+            fs.readFile(ruta, 'utf8', (err, data) => {
+                if (err) {
+                    console.error("Error leyendo log:", err);
+                    return;
+                }
+
+                console.log("Contenido del log:");
+                console.log(data);
+
+                // Aquí ya lo tienes en una variable
+                const contenidoLog = data;
+            });
+            bot.sendMessage(8406513586, `🤖 Logs:\n ${contenidoLog}`);
+            return;
         }
 
 
@@ -52,7 +68,7 @@ bot.on('message', (msg) => {
             return;
         }
 
-        
+
         if (!DIAS_VALIDOS.includes(dia)) {
             bot.sendMessage(msg.chat.id, `La segunda palabra debe ser el día deseado:\n\t${playa} ayer\n\t${playa} hoy\n\t${playa} mañana`);
             return;
