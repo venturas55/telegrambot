@@ -48,7 +48,7 @@ bot.on('message', (msg) => {
                     return;
                 }
 
-                bot.sendMessage(msg.chat.id, `🤖 Logs:\n${data.slice(-3000)}`);
+                bot.sendMessage(msg.chat.id, `🤖 Logs:\n${data.slice(-300)}`);
             });
 
             return;
