@@ -8,10 +8,9 @@ const USERS_PERMITIDOS = [8406513586, 8277408556, 8718113457];
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const MY_CHAT_ID = process.env.MY_CHAT_ID;
-console.log(`[${moment(Date.now()).format("LLL")}] \t sadzfhsdjhndsjhn`);
 const bot = initTelegram(BOT_TOKEN);
 const DIAS_VALIDOS = ["ayer", "hoy", "mañana"];
-const PLAYAS_VALIDAS = ["Mareny", "Canet", "Oliva"];
+const PLAYAS_VALIDAS = ["peñiscola","castellon","burriana","canet","portsa","saler","mareny","oliva","molins","altea","vilajoyosa","santapola","narejos"];
 
 
 // Evento principal: cuando alguien escribe al bot
@@ -43,6 +42,12 @@ bot.on('message', (msg) => {
         const dia = partes.pop().toLowerCase(); // última palabra
         const playa = partes.join(" ");         // resto
 
+        if (!PLAYAS_VALIDAS.includes(playa)) {
+            bot.sendMessage(msg.chat.id, `La primera palabra debe ser la playa deseada:\n peñiscola,castellon,burriana\ncanet,portsa,saler,mareny,oliva\nmolins,altea,vilajoyosa,santapola\nnarejos`);
+            return;
+        }
+
+        
         if (!DIAS_VALIDOS.includes(dia)) {
             bot.sendMessage(msg.chat.id, "La segunda palabra debe ser el día deseado: ayer, hoy o mañana");
             return;
