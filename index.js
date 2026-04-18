@@ -1,7 +1,7 @@
 import 'dotenv/config';
 
 import { initTelegram } from './services/telegram.js';
-const USERS_PERMITIDOS = [8406513586];
+const USERS_PERMITIDOS = [8406513586,8277408556];
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const MY_CHAT_ID = process.env.MY_CHAT_ID;
