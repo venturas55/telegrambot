@@ -30,26 +30,27 @@ bot.on('message', (msg) => {
             return;
         }
 
-        let texto = msg.text.trim();
         if (!msg.text) {
             bot.sendMessage(msg.chat.id, "Solo entiendo texto ❌ \n Usa <Playa Día> por ej:\n\t\t Mareny hoy");
             return;
         }
+        let texto = msg.text.trim();
 
-        if (texto.toLowerCase() == "log") {
+        if (texto.toLowerCase() === "log") {
+            if (msg.from.id !== 8406513586) {
+                bot.sendMessage(msg.chat.id, "No tienes permiso para ver logs ❌");
+                return;
+            }
+
             fs.readFile(ruta, 'utf8', (err, data) => {
                 if (err) {
-                    console.error("Error leyendo log:", err);
+                    bot.sendMessage(msg.chat.id, "Error leyendo logs ❌");
                     return;
                 }
 
-                console.log("Contenido del log:");
-                console.log(data);
-
-                // Aquí ya lo tienes en una variable
-                const contenidoLog = data;
+                bot.sendMessage(msg.chat.id, `🤖 Logs:\n${data.slice(-3000)}`);
             });
-            bot.sendMessage(8406513586, `🤖 Logs:\n ${contenidoLog}`);
+
             return;
         }
 
@@ -61,10 +62,10 @@ bot.on('message', (msg) => {
         }
 
         const dia = partes.pop().toLowerCase(); // última palabra
-        const playa = partes.join(" ").toLowerCase();;         // resto
+        const playa = partes.join(" ").toLowerCase();        // resto
 
         if (!PLAYAS_VALIDAS.includes(playa)) {
-            bot.sendMessage(msg.chat.id, `La primera palabra debe una de las siguientes playas:\n\tPeñiscola\n\tCastellon\n\tBurriana\n\tCanet\n\tPortsa\n\tSaler\n\tMareny\n\tOliva\n\tMolins\n\tAltea\n\tVillajoyosa\n\tSanta pola\n\tLos narejos`);
+            bot.sendMessage(msg.chat.id, `La playa debe ser una de las siguientes:\n\tPeñiscola\n\tCastellon\n\tBurriana\n\tCanet\n\tPortsa\n\tSaler\n\tMareny\n\tOliva\n\tMolins\n\tAltea\n\tVillajoyosa\n\tSanta pola\n\tLos narejos`);
             return;
         }
 
