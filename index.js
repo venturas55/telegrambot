@@ -19,7 +19,8 @@ const PLAYAS_VALIDAS = ["peñiscola", "castellon", "burriana", "canet", "portsa"
 // Evento principal: cuando alguien escribe al bot
 bot.on('message', (msg) => {
     const user = msg.from.username || msg.from.first_name || "desconocido";
-    console.log(`[${moment(Date.now()).format("LLL")}] \t ${user} envió ${msg.text}`)
+    let diahora=moment(Date.now()).format("L LTS");
+    console.log(`[${diahora}] \t ${user} envió ${msg.text}`)
     try {
         if (!USERS_PERMITIDOS.includes(msg.from.id)) {
             bot.sendMessage(msg.chat.id, `
