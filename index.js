@@ -13,7 +13,7 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 const MY_CHAT_ID = process.env.MY_CHAT_ID;
 const bot = initTelegram(BOT_TOKEN);
 const DIAS_VALIDOS = ["ayer", "hoy", "mañana"];
-const PLAYAS_VALIDAS = ["peñiscola", "castellon", "burriana", "canet", "portsa", "saler", "mareny", "oliva", "molins", "altea", "villajoyosa", "santa pola", "los narejos"];
+const PLAYAS_VALIDAS = ["peñiscola", "castellon", "burriana", "canet", "port saplaya", "saler", "mareny", "oliva", "molins", "altea", "villajoyosa", "santa pola", "los narejos"];
 
 
 // Evento principal: cuando alguien escribe al bot
@@ -66,7 +66,7 @@ bot.on('message', (msg) => {
         const playa = partes.join(" ").toLowerCase();        // resto
 
         if (!PLAYAS_VALIDAS.includes(playa)) {
-            bot.sendMessage(msg.chat.id, `La playa debe ser una de las siguientes:\n\tPeñiscola\n\tCastellon\n\tBurriana\n\tCanet\n\tPortsa\n\tSaler\n\tMareny\n\tOliva\n\tMolins\n\tAltea\n\tVillajoyosa\n\tSanta pola\n\tLos narejos`);
+            bot.sendMessage(msg.chat.id, `La playa debe ser una de las siguientes:\n\tPeñiscola\n\tCastellon\n\tBurriana\n\tCanet\n\tPort saplaya\n\tSaler\n\tMareny\n\tOliva\n\tMolins\n\tAltea\n\tVillajoyosa\n\tSanta pola\n\tLos narejos`);
             return;
         }
 
