@@ -1,18 +1,23 @@
 import 'dotenv/config';
-
+import moment from 'moment';
 import { initTelegram } from './services/telegram.js';
+
+moment.locale("es");
+
 const USERS_PERMITIDOS = [8406513586, 8277408556, 8718113457];
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const MY_CHAT_ID = process.env.MY_CHAT_ID;
-//console.log("TOKEN:", process.env.BOT_TOKEN);
+console.log(`[${moment(Date.now()).format("LLL")}] \t sadzfhsdjhndsjhn`);
 const bot = initTelegram(BOT_TOKEN);
 const DIAS_VALIDOS = ["ayer", "hoy", "mañana"];
+const PLAYAS_VALIDAS = ["Mareny", "Canet", "Oliva"];
 
 
 // Evento principal: cuando alguien escribe al bot
 bot.on('message', (msg) => {
     const user = msg.from.username || msg.from.first_name || "desconocido";
+    console.log(`[${moment(Date.now()).format("LLL")}] \t ${user} envió ${msg.text}`)
     try {
         if (!USERS_PERMITIDOS.includes(msg.from.id)) {
             bot.sendMessage(msg.chat.id, `
@@ -45,7 +50,6 @@ bot.on('message', (msg) => {
 
 
         let mensaje = `${user}|${msg.from.id}|${msg.chat.id}|${texto}`;
-        console.log(mensaje);
         mensaje = "Ponla " + mensaje;
         bot.sendMessage(MY_CHAT_ID, mensaje)
             .catch(console.error);
