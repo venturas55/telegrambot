@@ -10,7 +10,7 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 const MY_CHAT_ID = process.env.MY_CHAT_ID;
 const bot = initTelegram(BOT_TOKEN);
 const DIAS_VALIDOS = ["ayer", "hoy", "mañana"];
-const PLAYAS_VALIDAS = ["peñiscola","castellon","burriana","canet","portsa","saler","mareny","oliva","molins","altea","vilajoyosa","santapola","narejos"];
+const PLAYAS_VALIDAS = ["peñiscola","castellon","burriana","canet","portsa","saler","mareny","oliva","molins","altea","villajoyosa","santa pola","Los narejos"];
 
 
 // Evento principal: cuando alguien escribe al bot
