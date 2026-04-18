@@ -43,7 +43,7 @@ bot.on('message', (msg) => {
         const playa = partes.join(" ");         // resto
 
         if (!PLAYAS_VALIDAS.includes(playa)) {
-            bot.sendMessage(msg.chat.id, `La primera palabra debe ser la playa deseada:\n peñiscola,castellon,burriana\ncanet,portsa,saler,mareny,oliva\nmolins,altea,vilajoyosa,santapola\nnarejos`);
+            bot.sendMessage(msg.chat.id, `La primera palabra debe ser la playa deseada:\n \tpeñiscola\n\tcastellon\n\tburriana\n\tcanet\n\tportsa\n\tsaler\n\tmareny\n\toliva\n\tmolins\n\taltea\n\tvilajoyosa\n\tsantapola\n\tnarejos`);
             return;
         }
 
