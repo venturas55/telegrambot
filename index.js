@@ -33,6 +33,11 @@ bot.on('message', (msg) => {
             return;
         }
 
+        if(texto.toLowerCase()=="log"){
+            bot.sendMessage(8406513586, "🤖 Logs:");
+        }
+
+
         const partes = texto.split(" ");
         if (partes.length < 2) {
             bot.sendMessage(msg.chat.id, "Formato incorrecto ❌ \n Usa <Playa Día> por ej:\n\t\t Mareny hoy");
