@@ -43,13 +43,13 @@ bot.on('message', (msg) => {
         const playa = partes.join(" ").toLowerCase();;         // resto
 
         if (!PLAYAS_VALIDAS.includes(playa)) {
-            bot.sendMessage(msg.chat.id, `La primera palabra debe ser la playa deseada:\n \tPeñiscola\n\tCastellon\n\tBurriana\n\tCanet\n\tPortsa\n\tSaler\n\tMareny\n\tOliva\n\tMolins\n\tAltea\n\tVilajoyosa\n\tSantapola\n\tNarejos`);
+            bot.sendMessage(msg.chat.id, `La primera palabra debe una de las siguientes playas:\n\tPeñiscola\n\tCastellon\n\tBurriana\n\tCanet\n\tPortsa\n\tSaler\n\tMareny\n\tOliva\n\tMolins\n\tAltea\n\tVilajoyosa\n\tSantapola\n\tNarejos`);
             return;
         }
 
         
         if (!DIAS_VALIDOS.includes(dia)) {
-            bot.sendMessage(msg.chat.id, "La segunda palabra debe ser el día deseado:\n\tayer\n\thoy\n\tmañana");
+            bot.sendMessage(msg.chat.id, `La segunda palabra debe ser el día deseado:\n\t${playa} ayer\n\t${playa} hoy\n\t${playa} mañana`);
             return;
         }
 
