@@ -35,7 +35,7 @@ bot.on('message', (msg) => {
 
         const partes = texto.split(" ");
         if (partes.length < 2) {
-            bot.sendMessage(msg.chat.id, "Formato incorrecto ❌ \n Usa: Playa Día (ej: Mareny hoy)");
+            bot.sendMessage(msg.chat.id, "Formato incorrecto ❌ \n Usa: Playa Día ej:\n\t\t Mareny hoy)");
             return;
         }
 
