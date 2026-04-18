@@ -29,7 +29,7 @@ bot.on('message', (msg) => {
 
         let texto = msg.text.trim();
         if (!msg.text) {
-            bot.sendMessage(msg.chat.id, "Formato incorrecto ❌ \n Usa <Playa Día> por ej:\n\t\t Mareny hoy");
+            bot.sendMessage(msg.chat.id, "Solo entiendo texto ❌ \n Usa <Playa Día> por ej:\n\t\t Mareny hoy");
             return;
         }
 
