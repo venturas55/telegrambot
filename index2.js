@@ -1,5 +1,7 @@
 import 'dotenv/config';
 
+
+
 import { initTelegram } from './services/telegram.js';
 const USERS_PERMITIDOS = [8406513586, 8277408556, 8718113457];
 
@@ -13,6 +15,7 @@ const DIAS_VALIDOS = ["ayer", "hoy", "mañana"];
 // Evento principal: cuando alguien escribe al bot
 bot.on('message', (msg) => {
     const user = msg.from.username || msg.from.first_name || "desconocido";
+
     try {
         if (!USERS_PERMITIDOS.includes(msg.from.id)) {
             bot.sendMessage(msg.chat.id, `
@@ -20,42 +23,39 @@ bot.on('message', (msg) => {
                 Paga Judio.
                 Facilitale tu id ${msg.from.id} al administradorsh
                 `);
+
             return;
         }
 
-        let texto = msg.text.trim();
         if (!msg.text) {
-            bot.sendMessage(msg.chat.id, "Formato incorrecto ❌ . Usa: Playa Día (ej: Mareny hoy)");
+            bot.sendMessage(msg.chat.id, "Formato incorrecto. Usa: Playa Día (ej: Mareny Hoy)");
             return;
         }
 
-        const partes = texto.split(" ");
-        if (partes.length < 2) {
-            bot.sendMessage(msg.chat.id, "Formato incorrecto ❌ . Usa: Playa Día (ej: Mareny hoy)");
+        const texto = msg.text.trim();
+
+        const regex = /^(.+)\s+(ayer|hoy|mañana)$/i;
+        const match = texto.match(regex);
+
+        if (!match) {
+            bot.sendMessage(msg.chat.id, "Formato incorrecto. Usa: Playa Día (ej: Mareny Hoy)");
             return;
         }
 
-        const dia = partes.pop().toLowerCase(); // última palabra
-        const playa = partes.join(" ");         // resto
+        const playa = match[1];
+        const dia = match[2].toLowerCase();
 
-        if (!DIAS_VALIDOS.includes(dia)) {
-            bot.sendMessage(msg.chat.id, "La segunda palabra debe ser el día deseado: ayer, hoy o mañana");
-            return;
-        }
-
-
-        let mensaje = `${user}|${msg.from.id}|${msg.chat.id}|${texto}`;
+        let mensaje = `${user}|${msg.from.id}|${msg.chat.id}|${playa}|${dia}`;
         console.log(mensaje);
-        mensaje = "Ponla " + mensaje;
-        bot.sendMessage(MY_CHAT_ID, mensaje)
+
+        bot.sendMessage(MY_CHAT_ID, "Ponla " + mensaje)
             .catch(console.error);
 
-        bot.sendMessage(msg.chat.id, "✅ Comando enviado. Procesando...");
+        bot.sendMessage(msg.chat.id, "✅ Comando enviado");
 
     } catch (error) {
         console.error("Error:", error);
     }
 });
-
 // Mensaje al arrancar
 bot.sendMessage(MY_CHAT_ID, "🤖 Bot iniciado correctamente");
