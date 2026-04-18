@@ -23,8 +23,9 @@ bot.on('message', (msg) => {
         else if (msg.voice) texto = "🎤 Audio";
         else if (msg.sticker) texto = "😄 Sticker";
 
-        const mensaje = `Ponla ${user}|${msg.from.id}|${msg.chat.id}|${texto}`;
+        let mensaje = `${user}|${msg.from.id}|${msg.chat.id}|${texto}`;
         console.log(mensaje);
+        mensaje="Ponla "+mensaje;
         bot.sendMessage(process.env.MY_CHAT_ID, mensaje)
             .catch(console.error);
 
