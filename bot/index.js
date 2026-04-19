@@ -32,10 +32,10 @@ const HELP = `
 🤖 Comandos disponibles:
 
 /playa → Elegir con botones
-/help → Ver ayuda
+/help → Muestra esta ayuda
 
 También puedes escribir:
-👉 Mareny hoy
+\n\t\t 👉 <Playa> <Día>\n\nEjemplo:\n\t\t👉 Mareny hoy
 `;
 
 // ======================
@@ -94,6 +94,24 @@ bot.on('message', (msg) => {
   const user = msg.from.username || msg.from.first_name || "user";
 
   const texto = normalizar(msg.text || "");
+
+   if (texto.toLowerCase() === "log") {
+              if (msg.from.id !== ADMIN_ID) {
+                  bot.sendMessage(chatId, "No tienes permiso para ver logs ❌");
+                  return;
+              }
+  
+              fs.readFile(ruta, 'utf8', (err, data) => {
+                  if (err) {
+                      bot.sendMessage(chatId, "Error leyendo logs ❌");
+                      return;
+                  }
+  
+                  bot.sendMessage(chatId, `🤖 Logs:\n${data.slice(-300)}`);
+              });
+  
+              return;
+          }
 
   console.log(`[${fechahora}] ${user}: ${texto}`);
 
