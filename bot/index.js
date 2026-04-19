@@ -14,6 +14,12 @@ import {
 
 import { normalizar, parseInput } from './utils.js';
 
+const logAccion = (user, chatId, accion) => {
+  console.log(
+    `[${moment(Date.now()).format("L LTS")}] \t ${user} (${chatId}) envió \t ${accion}`
+  );
+};
+
 dayjs.locale('es');
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
@@ -104,8 +110,7 @@ bot.on('message', (msg) => {
 
   const texto = normalizar(msg.text || "");
 
-  console.log(`[${moment(Date.now()).format("L LTS")}] \t ${user} (${chatId}) envió\t ${texto}`);
-
+  logAccion(user, chatId, texto);
 
   if (!autorizado(userId)) {
     bot.sendMessage(chatId, "❌ No autorizado");
@@ -208,7 +213,7 @@ bot.on('callback_query', (query) => {
         // ❌ NO reply_markup → elimina botones
       }
     );
-
+    logAccion(query.from.username || query.from.first_name, chatId, `${estado.playa} ${dia} `);
     delete estadoUsuarios[userId];
   }
 
