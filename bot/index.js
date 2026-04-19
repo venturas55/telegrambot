@@ -3,7 +3,6 @@ import fs from 'fs';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es.js';
 import moment from 'moment';
-
 import { initTelegram } from './services/telegram.js';
 import {
   USERS_PERMITIDOS,

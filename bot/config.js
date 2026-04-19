@@ -9,3 +9,5 @@ export const PLAYAS_VALIDAS = [
   "port saplaya", "saler", "mareny", "oliva",
   "molins", "altea", "villajoyosa", "santa pola", "los narejos"
 ];
+
+export const ruta = `${process.env.HOME}/.pm2/logs/telegramBOT-out.log`;
