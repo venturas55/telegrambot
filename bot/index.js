@@ -86,6 +86,13 @@ const mostrarPlayas = (chatId) => {
 };
 
 // ======================
+// 💬 ERROR POLLING
+// ======================
+
+bot.on("polling_error", (error) => {
+  console.error("Polling error REAL:", error);
+});
+// ======================
 // 💬 MENSAJES
 // ======================
 
