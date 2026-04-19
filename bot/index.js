@@ -150,7 +150,10 @@ bot.on('message', (msg) => {
 
     return;
   }
-
+if (texto === "kaka"){
+   bot.sendMessage(chatId, texto);
+   return;
+}
   // ===== texto libre =====
 
   const parsed = parseInput(texto);
