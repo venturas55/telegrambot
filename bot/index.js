@@ -43,6 +43,7 @@ Puedes escribir:
 🤖 Comandos disponibles:
 /help → Muestra esta ayuda
 /playa → Elegir con botones
+/general → Elegir con botones
 `;
 
 // ======================
@@ -118,10 +119,12 @@ bot.on('message', (msg) => {
   }
 
   // ===== comandos =====
-
-
-
-
+  if (texto === "/general") {
+    const mensaje = `General|${user}|${chatId}|todo`;
+    bot.sendMessage(chatId, "⏳ Procesando peticion estado general...");
+    bot.sendMessage(MY_CHAT_ID, mensaje);
+    return;
+  }
   if (texto === "/start" || texto === "/help") {
     bot.sendMessage(chatId, HELP);
     return;
@@ -150,10 +153,7 @@ bot.on('message', (msg) => {
 
     return;
   }
-if (texto === "kaka"){
-   bot.sendMessage(MY_CHAT_ID, texto);
-   return;
-}
+
   // ===== texto libre =====
 
   const parsed = parseInput(texto);
