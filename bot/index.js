@@ -20,7 +20,7 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 const MY_CHAT_ID = process.env.MY_CHAT_ID;
 
 const bot = initTelegram(BOT_TOKEN);
-let fechahora = moment(Date.now()).format("L LTS");
+
 // Estado simple por usuario
 const estadoUsuarios = {};
 
@@ -90,7 +90,8 @@ const mostrarPlayas = (chatId) => {
 // ======================
 
 bot.on("polling_error", (error) => {
-  console.error("Polling error REAL:", error);
+  console.error("Polling error RAW:", error);
+  console.error("Polling error JSON:", JSON.stringify(error, null, 2));
 });
 // ======================
 // 💬 MENSAJES
@@ -103,7 +104,7 @@ bot.on('message', (msg) => {
 
   const texto = normalizar(msg.text || "");
 
-  console.log(`[${fechahora}] \t ${user} (${chatId}) envió\t ${texto}`);
+  console.log(`[${moment(Date.now()).format("L LTS")}] \t ${user} (${chatId}) envió\t ${texto}`);
 
 
   if (!autorizado(userId)) {
