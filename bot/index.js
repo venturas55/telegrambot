@@ -29,13 +29,14 @@ const estadoUsuarios = {};
 // ======================
 
 const HELP = `
-🤖 Comandos disponibles:
+PONLA PONLA PONLA
 
-/playa → Elegir con botones
-/help → Muestra esta ayuda
-
-También puedes escribir:
+Puedes escribir:
 \n\t\t 👉 <Playa> <Día>\n\nEjemplo:\n\t\t👉 Mareny hoy
+
+🤖 Comandos disponibles:
+/help → Muestra esta ayuda
+/playa → Elegir con botones
 `;
 
 // ======================
