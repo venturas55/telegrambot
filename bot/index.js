@@ -43,7 +43,7 @@ Puedes escribir:
 🤖 Comandos disponibles:
 /help → Muestra esta ayuda
 /playa → Elegir con botones
-/general → Elegir con botones
+/general → Ver estado de playas
 `;
 
 // ======================
