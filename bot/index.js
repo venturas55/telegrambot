@@ -20,7 +20,7 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 const MY_CHAT_ID = process.env.MY_CHAT_ID;
 
 const bot = initTelegram(BOT_TOKEN);
-let fechahora=moment(Date.now()).format("L LTS");
+let fechahora = moment(Date.now()).format("L LTS");
 // Estado simple por usuario
 const estadoUsuarios = {};
 
@@ -95,23 +95,23 @@ bot.on('message', (msg) => {
 
   const texto = normalizar(msg.text || "");
 
-   if (texto.toLowerCase() === "log") {
-              if (msg.from.id !== ADMIN_ID) {
-                  bot.sendMessage(chatId, "No tienes permiso para ver logs ❌");
-                  return;
-              }
-  
-              fs.readFile(ruta, 'utf8', (err, data) => {
-                  if (err) {
-                      bot.sendMessage(chatId, "Error leyendo logs ❌");
-                      return;
-                  }
-  
-                  bot.sendMessage(chatId, `🤖 Logs:\n${data.slice(-300)}`);
-              });
-  
-              return;
-          }
+  if (texto.toLowerCase() === "log") {
+    if (chatId !== ADMIN_ID) {
+      bot.sendMessage(chatId, "No tienes permiso para ver logs ❌");
+      return;
+    }
+
+    fs.readFile(ruta, 'utf8', (err, data) => {
+      if (err) {
+        bot.sendMessage(chatId, "Error leyendo logs ❌");
+        return;
+      }
+
+      bot.sendMessage(chatId, `🤖 Logs:\n${data.slice(-300)}`);
+    });
+
+    return;
+  }
 
   console.log(`[${fechahora}] \t ${user} (${chatId}) envió\t ${texto}`);
 
@@ -185,32 +185,32 @@ bot.on('callback_query', (query) => {
     });
   }
 
-if (data.startsWith("dia:")) {
+  if (data.startsWith("dia:")) {
     const dia = data.split(":")[1];
     const estado = estadoUsuarios[userId];
 
     if (!estado?.playa) {
-        bot.sendMessage(chatId, "❌ Primero elige playa");
-        return;
+      bot.sendMessage(chatId, "❌ Primero elige playa");
+      return;
     }
 
     const playa = estado.playa;
 
     // 👉 Ejecutar lógica
-    procesarPeticion(chatId, query.from.first_name+" "+query.from.last_name, playa, dia);
+    procesarPeticion(chatId, query.from.first_name + " " + query.from.last_name, playa, dia);
 
     // 👉 EDITAR el mensaje y quitar botones
     bot.editMessageText(
-        `✅ Pedido enviado\n\n🏖️ Playa: ${playa}\n📅 Día: ${dia}`,
-        {
-            chat_id: chatId,
-            message_id: query.message.message_id
-            // ❌ NO reply_markup → elimina botones
-        }
+      `✅ Pedido enviado\n\n🏖️ Playa: ${playa}\n📅 Día: ${dia}`,
+      {
+        chat_id: chatId,
+        message_id: query.message.message_id
+        // ❌ NO reply_markup → elimina botones
+      }
     );
 
     delete estadoUsuarios[userId];
-}
+  }
 
   bot.answerCallbackQuery(query.id);
 });
