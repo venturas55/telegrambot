@@ -8,7 +8,8 @@ import {
   USERS_PERMITIDOS,
   ADMIN_ID,
   DIAS_VALIDOS,
-  PLAYAS_VALIDAS
+  PLAYAS_VALIDAS,
+  ruta
 } from './config.js';
 
 import { normalizar, parseInput } from './utils.js';
