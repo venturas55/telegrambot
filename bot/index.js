@@ -151,7 +151,7 @@ bot.on('message', (msg) => {
     return;
   }
 if (texto === "kaka"){
-   bot.sendMessage(chatId, texto);
+   bot.sendMessage(MY_CHAT_ID, texto);
    return;
 }
   // ===== texto libre =====
