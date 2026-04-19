@@ -95,25 +95,8 @@ bot.on('message', (msg) => {
 
   const texto = normalizar(msg.text || "");
 
-  if (texto.toLowerCase() === "log") {
-    if (chatId !== ADMIN_ID) {
-      bot.sendMessage(chatId, "No tienes permiso para ver logs ❌");
-      return;
-    }
-
-    fs.readFile(ruta, 'utf8', (err, data) => {
-      if (err) {
-        bot.sendMessage(chatId, "Error leyendo logs ❌");
-        return;
-      }
-
-      bot.sendMessage(chatId, `🤖 Logs:\n${data.slice(-300)}`);
-    });
-
-    return;
-  }
-
   console.log(`[${fechahora}] \t ${user} (${chatId}) envió\t ${texto}`);
+
 
   if (!autorizado(userId)) {
     bot.sendMessage(chatId, "❌ No autorizado");
@@ -121,6 +104,9 @@ bot.on('message', (msg) => {
   }
 
   // ===== comandos =====
+
+
+
 
   if (texto === "/start" || texto === "/help") {
     bot.sendMessage(chatId, HELP);
@@ -132,15 +118,20 @@ bot.on('message', (msg) => {
     return;
   }
 
-  if (texto === "/log") {
-    if (userId !== ADMIN_ID) {
-      bot.sendMessage(chatId, "❌ No permitido");
+
+  if (texto === "log") {
+    if (chatId != ADMIN_ID) {
+      bot.sendMessage(chatId, "No tienes permiso para ver logs ❌");
       return;
     }
 
-    fs.readFile(process.env.LOG_PATH, 'utf8', (err, data) => {
-      if (err) return bot.sendMessage(chatId, "Error leyendo log");
-      bot.sendMessage(chatId, data.slice(-500));
+    fs.readFile(ruta, 'utf8', (err, data) => {
+      if (err) {
+        bot.sendMessage(chatId, "Error leyendo logs ❌");
+        return;
+      }
+
+      bot.sendMessage(chatId, `🤖 Logs:\n${data.slice(-300)}`);
     });
 
     return;
