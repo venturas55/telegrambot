@@ -1,0 +1,11 @@
+export const USERS_PERMITIDOS =  [8406513586, 8277408556, 8718113457];
+
+export const ADMIN_ID = Number(process.env.ADMIN_ID);
+
+export const DIAS_VALIDOS = ["ayer", "hoy", "mañana"];
+
+export const PLAYAS_VALIDAS = [
+  "peñíscola", "castellon", "burriana", "canet",
+  "port saplaya", "saler", "mareny", "oliva",
+  "molins", "altea", "villajoyosa", "santa pola", "los narejos"
+];

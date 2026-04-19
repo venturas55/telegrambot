@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import moment from 'moment';
-import { initTelegram } from './services/telegram.js';
+import { initTelegram } from './services/bot/services/telegram.js';
 import fs from 'fs';
 
 const ruta = `${process.env.HOME}/.pm2/logs/telegramBOT-out.log`;
@@ -13,8 +13,7 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 const MY_CHAT_ID = process.env.MY_CHAT_ID;
 const bot = initTelegram(BOT_TOKEN);
 const DIAS_VALIDOS = ["ayer", "hoy", "mañana"];
-const PLAYAS_VALIDAS = ["peñiscola", "castellon", "burriana", "canet", "port saplaya", "saler", "mareny", "oliva", "molins", "altea", "villajoyosa", "santa pola", "los narejos"];
-
+const PLAYAS_VALIDAS = ["peñíscola", "castellon", "burriana", "canet", "port saplaya", "saler", "mareny", "oliva", "molins", "altea", "villajoyosa", "santa pola", "los narejos"];
 
 // Evento principal: cuando alguien escribe al bot
 bot.on('message', (msg) => {
@@ -32,7 +31,7 @@ bot.on('message', (msg) => {
         }
 
         if (!msg.text) {
-            bot.sendMessage(msg.chat.id, "Solo entiendo texto ❌ \n Usa <Playa Día> por ej:\n\t\t Mareny hoy");
+            bot.sendMessage(msg.chat.id, "Solo entiendo texto ❌\n Usa:\n\t\t 👉 <Playa> <Día>\n\nEjemplo:\n\t\t👉 Mareny hoy");
             return;
         }
         let texto = msg.text.trim();
@@ -58,7 +57,7 @@ bot.on('message', (msg) => {
 
         const partes = texto.split(" ");
         if (partes.length < 2) {
-            bot.sendMessage(msg.chat.id, "Formato incorrecto ❌ \n Usa <Playa Día> por ej:\n\t\t Mareny hoy");
+            bot.sendMessage(msg.chat.id, "Formato incorrecto ❌\n Usa:\n\t\t 👉 <Playa> <Día>\n\nEjemplo:\n\t\t👉 Mareny hoy");
             return;
         }
 
@@ -66,7 +65,7 @@ bot.on('message', (msg) => {
         const playa = partes.join(" ").toLowerCase();        // resto
 
         if (!PLAYAS_VALIDAS.includes(playa)) {
-            bot.sendMessage(msg.chat.id, `La playa debe ser una de las siguientes:\n\tPeñiscola\n\tCastellon\n\tBurriana\n\tCanet\n\tPort saplaya\n\tSaler\n\tMareny\n\tOliva\n\tMolins\n\tAltea\n\tVillajoyosa\n\tSanta pola\n\tLos narejos`);
+            bot.sendMessage(msg.chat.id, `La playa 🏖️ debe ser una de las siguientes:\n\tPeñíscola\n\tCastellon\n\tBurriana\n\tCanet\n\tPort saplaya\n\tSaler\n\tMareny\n\tOliva\n\tMolins\n\tAltea\n\tVillajoyosa\n\tSanta pola\n\tLos narejos`);
             return;
         }
 
@@ -82,7 +81,7 @@ bot.on('message', (msg) => {
         bot.sendMessage(MY_CHAT_ID, mensaje)
             .catch(console.error);
 
-        bot.sendMessage(msg.chat.id, "✅ Comando enviado. Procesando...");
+        bot.sendMessage(msg.chat.id, "✅ Comando enviado. Procesando...\n\n(Espera 10 segunditos)");
 
     } catch (error) {
         console.error("Error:", error);
