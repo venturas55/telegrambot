@@ -113,7 +113,7 @@ bot.on('message', (msg) => {
               return;
           }
 
-  console.log(`[${fechahora}] ${user}: ${texto}`);
+  console.log(`[${fechahora}] \t ${user} (${chatId}) envió\t ${texto}`);
 
   if (!autorizado(userId)) {
     bot.sendMessage(chatId, "❌ No autorizado");
