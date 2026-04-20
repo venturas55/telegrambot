@@ -49,7 +49,7 @@ const autorizado = (id) => USERS_PERMITIDOS.includes(id);
 
 const validar = (playa, dia) => {
   if (!PLAYAS_VALIDAS.includes(playa)) {
-    return `❌ La playa 🏖️ debe ser una de las siguientes:\n\tPeñíscola\n\tCastellon\n\tBurriana\n\tCanet\n\tPort saplaya\n\tSaler\n\tMareny\n\tOliva\n\tMolins\n\tAltea\n\tVillajoyosa\n\tSanta pola\n\tLos narejos`;
+    return `❌ La playa 🏖️ debe ser una de las siguientes:\n\tPeñíscola\n\tCastellon\n\tBurriana\n\tCanet\n\tPort saplaya\n\tSaler\n\tPerelló\n\tMareny\n\tOliva\n\tMolins\n\tAltea\n\tVillajoyosa\n\tSanta pola\n\tLos narejos`;
   }
   if (!DIAS_VALIDOS.includes(dia)) {
     return `❌ La segunda palabra debe ser el día deseado:\n\t${playa} ayer\n\t${playa} hoy\n\t${playa} mañana`;

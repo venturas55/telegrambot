@@ -6,7 +6,7 @@ export const DIAS_VALIDOS = ["ayer", "hoy", "mañana"];
 
 export const PLAYAS_VALIDAS = [
   "peñíscola", "castellon", "burriana", "canet",
-  "port saplaya", "saler", "mareny", "oliva",
+  "port saplaya", "saler","perelló", "mareny", "oliva",
   "molins", "altea", "villajoyosa", "santa pola", "los narejos"
 ];
 
