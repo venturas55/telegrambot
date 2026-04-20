@@ -14,25 +14,20 @@ import {
 
 import { normalizar, parseInput } from './utils.js';
 
+dayjs.locale('es');
+
 const logAccion = (user, chatId, accion) => {
   console.log(
     `[${moment(Date.now()).format("L LTS")}] \t ${user} (${chatId}) envió \t ${accion}`
   );
 };
 
-dayjs.locale('es');
-
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const MY_CHAT_ID = process.env.MY_CHAT_ID;
-
 const bot = initTelegram(BOT_TOKEN);
 
 // Estado simple por usuario
 const estadoUsuarios = {};
-
-// ======================
-// 🧾 MENSAJES
-// ======================
 
 const HELP = `
 PONLA PONLA PONLA
@@ -135,7 +130,6 @@ bot.on('message', (msg) => {
     return;
   }
 
-
   if (texto === "log") {
     if (chatId != ADMIN_ID) {
       bot.sendMessage(chatId, "No tienes permiso para ver logs ❌");
@@ -154,6 +148,20 @@ bot.on('message', (msg) => {
     return;
   }
 
+  if (texto === "/precio") {
+    bot.sendMessage(chatId, `${user} recuerda pagar los 4,99€ al mes. \nNo seas Houdini. \n\nBizum o transferencia.`);
+    return;
+  }
+
+  if (texto === "/avisos") {
+    bot.sendMessage(chatId, " Aqui podrás consultar los \n\t📝 avisos 📝 \nrelevantes sobre el funcionamiento de la app");
+    return;
+  }
+
+  if (texto === "/sugerencia") {
+    bot.sendMessage(chatId, "Proximamente podrás enviar sugerencias al DEV\n\n\t 🚧 En desarrollo 🚧");
+    return;
+  }
   // ===== texto libre =====
 
   const parsed = parseInput(texto);
