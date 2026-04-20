@@ -18,7 +18,7 @@ dayjs.locale('es');
 
 const logAccion = (user, chatId, accion) => {
   console.log(
-    `[${moment(Date.now()).format("L LTS")}] \t ${user} (${chatId}) envió \t ${accion}`
+    `[${moment(Date.now()).format("LTS")}] \t ${user} ${chatId} envió \t ${accion}`
   );
 };
 
@@ -142,7 +142,7 @@ bot.on('message', (msg) => {
         return;
       }
 
-      bot.sendMessage(chatId, `🤖 Logs:\n${data.slice(-300)}`);
+      bot.sendMessage(chatId, `🤖 Logs:\n${data.slice(-400)}`);
     });
 
     return;
