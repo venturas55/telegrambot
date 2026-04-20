@@ -1,5 +1,5 @@
-export const USERS_PERMITIDOS =  [8406513586, 8277408556, 8718113457,1946422850];
-                                  //Guardian     Jorge       Robin      Nacho
+export const USERS_PERMITIDOS =  [8406513586, 8277408556, 8718113457,1946422850, 2048413152 ];
+                                  //Guardian     Jorge       Robin      Nacho     DaniKite
 export const ADMIN_ID = Number(process.env.ADMIN_ID);
 
 export const DIAS_VALIDOS = ["ayer", "hoy", "mañana"];
